@@ -31,7 +31,7 @@ class Follower:
 	# 	return mask[int(y), int(x)] == 255
 
 	def callback(self, msg):
-		print msg.pose.pose
+		print(msg.pose.pose)
 
 	def is_color(self, image, center, color):
 		cx, cy = center
