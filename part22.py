@@ -129,7 +129,6 @@ class Follower:
 
 if __name__ == "__main__":
 	rospy.init_node('follower')
-	rospy.init_node('check_odometry')
 	follower = Follower()
 	rospy.spin()
 	# while (not rospy.is_shutdown()):
