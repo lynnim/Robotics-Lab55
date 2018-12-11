@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import rospy, cv2, cv_bridge, numpy
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import Twist
@@ -18,20 +19,25 @@ class Follower:
 		self.old_green = False
 		self.state = "FOLLOW"
 
-	# def is_red(self, hsv, center, color=(154,17,16)):
-# 	def is_red(self, hsv, center):
-# 		x,y = center
-# 		lower_color = numpy.array([16,17,163])
-# 		upper_color = numpy.array([18,19,165])
-# 		mask = cv2.inRange(hsv, lower_color, upper_color)
-# 		cv2.imshow("window", mask)
-# 		return mask[int(y), int(x)] == 255
+	# def is_red(self, hsv, center):
+	# 	x,y = center
+	# 	lower_color = numpy.array([16,17,163])
+	# 	upper_color = numpy.array([18,19,165])
+	# 	mask = cv2.inRange(hsv, lower_color, upper_color)
+	# 	cv2.imshow("window", mask)
+	# 	return mask[int(y), int(x)] == 255
 
 	def is_color(self, image, center, color):
 		cx, cy = center
 		return (image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0]) == color
 		
-	def is_blue(self, image, center, color = (0,0,169)):
+	def is_red(self, image, center, color = (164, 18, 17)):
+		cx, cy = center
+		cy -= 40
+		print(image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0]) == color
+		return self.is_color(image, (cx, cy), color)
+
+	def is_blue(self, image, center, color = (0, 0, 169)):
 		cx, cy = center
 		cy -= 40
 		return self.is_color(image, (cx, cy), color)
@@ -80,9 +86,9 @@ class Follower:
 				if self.current_red:
 					print("RED")
 				elif self.current_blue:
-					print("GREEN")
-				elif self.current_green:
 					print("BLUE")
+				elif self.current_green:
+					print("GREEN")
 				if self.old_red and not self.current_red:
 					self.state = "STOP"
 				elif self.old_blue and not self.current_blue:
@@ -121,3 +127,5 @@ if __name__ == "__main__":
 	rospy.spin()
 	# while (not rospy.is_shutdown()):
 		# print(follower.M)
+
+# {'mu02': 21328724.24581909, 'mu03': -2263635.88671875, 'm11': 77474830830.0, 'nu02': 5.223028374669191e-05, 'm12': 28623657702240.0, 'mu21': 75136156.71569824, 'mu20': 931719212.8731079, 'nu20': 0.002281616016961075, 'm30': 23514535222590.0, 'nu21': 2.3016848492542736e-07, 'mu11': -44877487.03909302, 'mu12': 16908234.21757126, 'nu11': -0.00010989705032872682, 'nu12': 5.179587062655204e-08, 'm02': 87306512910.0, 'm03': 32282591954610.0, 'm00': 639030.0, 'm01': 236173350.0, 'mu30': -663540141.6640625, 'nu30': -2.032656922710442e-06, 'nu03': -6.934313188792959e-09, 'm10': 209750250.0, 'm20': 69778514160.0, 'm21': 25759428091320.0}
