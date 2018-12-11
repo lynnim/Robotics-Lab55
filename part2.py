@@ -54,21 +54,21 @@ class Follower:
 
     #for the green
     g_top = 4 * h / 5  
-    g_bot = g_top + 20  
+    g_bot = g_top + 20  # use the 20 units in front of the robot from that 5/6 of the way down
     g_mask[0:g_top, 0:w] = 0
     g_mask[g_bot:h, 0:w] = 0
     G = cv2.moments(g_mask)
 
     #for the blue
     b_top = 4 * h / 5  
-    b_bot = b_top + 20  
+    b_bot = b_top + 20  # use the 20 units in front of the robot from that 5/6 of the way down
     b_mask[0:b_top, 0:w] = 0
     b_mask[b_bot:h, 0:w] = 0
     B = cv2.moments(b_mask)
 
     #for the red
-    r_top = 5 * h / 6 
-    r_bot = r_top + 20  
+    r_top = 4 * h / 5  
+    r_bot = r_top + 20  # use the 20 units in front of the robot from that 5/6 of the way down
     r_mask[0:r_top, 0:w] = 0
     r_mask[r_bot:h, 0:w] = 0
     R = cv2.moments(r_mask)
@@ -100,31 +100,28 @@ class Follower:
             # calculate the centriod
             r_cx = int(R['m10'] / R['m00'])
             r_cy = int(R['m01'] / R['m00'])
-            cv2.circle(image, (r_cx, r_cy), 10, (225, 0, 0), -1)
+            cv2.circle(image, (r_cx, r_cy), 10, (0, 0, 225), -1)
             print("red = stop")
             self.twist.linear.x = 0
             self.twist.angular.z = 0
             self.cmd_vel_pub.publish(self.twist)
 
-        else:
-            # calculate the centriod
-            cx = int(M['m10'] / M['m00'])
-            cy = int(M['m01'] / M['m00'])
-            cv2.circle(image, (cx, cy), 20, (0, 0, 255), -1)
+      else:
+        # calculate the centriod
+        cx = int(M['m10'] / M['m00'])
+        cy = int(M['m01'] / M['m00'])
+        cv2.circle(image, (cx, cy), 20, (0, 0, 255), -1)
 
-            # BEGIN CONTROL
-            err = cx - w / 2
-            self.twist.linear.x = 0.2
-            self.twist.angular.z = -float(err) / 100
-            #print("twisting:")
-            #print(str(-float(err) / 100))
-            self.cmd_vel_pub.publish(self.twist)
-            # END CONTROL
+        err = cx - w / 2
+        self.twist.linear.x = 0.2
+        self.twist.angular.z = -float(err) / 100
+        #print("twisting:")
+        #print(str(-float(err) / 100))
+        self.cmd_vel_pub.publish(self.twist)
     cv2.imshow("window", image)
     cv2.waitKey(3)
+
 
 rospy.init_node('follower')
 follower = Follower()
 rospy.spin()
-# END ALL
-
