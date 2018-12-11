@@ -53,22 +53,22 @@ class Follower:
     y_mask[search_bot:h, 0:w] = 0
 
     #for the green
-    g_top = 4 * h / 5  # put the frame 5/6 of the way down
-    g_bot = g_top + 20  # use the 20 units in front of the robot from that 5/6 of the way down
+    g_top = 4 * h / 5  
+    g_bot = g_top + 20  
     g_mask[0:g_top, 0:w] = 0
     g_mask[g_bot:h, 0:w] = 0
     G = cv2.moments(g_mask)
 
     #for the blue
-    b_top = 4 * h / 5  # put the frame 5/6 of the way down
-    b_bot = b_top + 20  # use the 20 units in front of the robot from that 5/6 of the way down
+    b_top = 4 * h / 5  
+    b_bot = b_top + 20  
     b_mask[0:b_top, 0:w] = 0
     b_mask[b_bot:h, 0:w] = 0
     B = cv2.moments(b_mask)
 
     #for the red
-    r_top = 4 * h / 5  # put the frame 5/6 of the way down
-    r_bot = r_top + 20  # use the 20 units in front of the robot from that 5/6 of the way down
+    r_top = 5 * h / 6 
+    r_bot = r_top + 20  
     r_mask[0:r_top, 0:w] = 0
     r_mask[r_bot:h, 0:w] = 0
     R = cv2.moments(r_mask)
