@@ -102,7 +102,7 @@ class Follower:
             r_cy = int(R['m01'] / R['m00'])
             cv2.circle(image, (r_cx, r_cy), 10, (0, 0, 225), -1)
             print("red = stop")
-            self.twist.linear.x = 0
+            self.twist.linear.x = 5
             self.twist.angular.z = 0
             self.cmd_vel_pub.publish(self.twist)
 
@@ -120,7 +120,6 @@ class Follower:
             self.cmd_vel_pub.publish(self.twist)
     cv2.imshow("window", image)
     cv2.waitKey(3)
-
 
 rospy.init_node('follower')
 follower = Follower()
