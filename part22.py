@@ -91,6 +91,8 @@ class Follower:
 
 				if self.current_red:
 					print("RED")
+					initial = time.now()
+					print(initial)
 				elif self.current_blue:
 					print("BLUE")
 				elif self.current_green:
