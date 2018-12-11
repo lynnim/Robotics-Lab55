@@ -29,7 +29,7 @@ class Follower:
 
 	def is_color(self, image, center, color):
 		cx, cy = center
-		print(image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0]) == color)
+		print(image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0]) == color))
 		return (image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0]) == color
 		
 	def is_red(self, image, center, color = (164, 18, 17)):
