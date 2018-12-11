@@ -40,7 +40,7 @@ class Follower:
     upper_blue = numpy.array([130, 255, 255])
     b_mask = cv2.inRange(hsv, lower_blue, upper_blue)
 
-    lower_red = numpy.array([-10, 100, 100]])
+    lower_red = numpy.array([-10, 100, 100])
     upper_red = numpy.array([10, 255, 255])
     r_mask = cv2.inRange(hsv, lower_red, upper_red)
 
