@@ -35,13 +35,12 @@ class Follower:
 
 	def is_color(self, image, center, color):
 		cx, cy = center
-		print(image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0])
 		return (image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0]) == color
 		
 	def is_red(self, image, center, color = (164, 18, 17)):
 		cx, cy = center
 		#cy -= 40
-		#print(image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0])
+		print(image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0])
 		return self.is_color(image, (cx, cy), color)
 
 	def is_blue(self, image, center, color = (0, 0, 169)):
@@ -90,11 +89,11 @@ class Follower:
 				self.current_blue = self.is_blue(image, (cx,cy))
 				self.current_green = self.is_green(image, (cx,cy))
 
-				if self.is_red:
+				if self.current_red:
 					print("RED")
-				elif self.is_blue:
+				elif self.current_blue:
 					print("BLUE")
-				elif self.is_green:
+				elif self.current_green:
 					print("GREEN")
 				if self.old_red and not self.current_red:
 					self.state = "STOP"
