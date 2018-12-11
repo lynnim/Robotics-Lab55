@@ -89,11 +89,11 @@ class Follower:
 				self.current_blue = self.is_blue(image, (cx,cy))
 				self.current_green = self.is_green(image, (cx,cy))
 
-				if self.current_red:
+				if self.is_red:
 					print("RED")
-				elif self.current_blue:
+				elif self.is_blue:
 					print("BLUE")
-				elif self.current_green:
+				elif self.is_green:
 					print("GREEN")
 				if self.old_red and not self.current_red:
 					self.state = "STOP"
