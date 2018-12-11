@@ -92,7 +92,7 @@ class Follower:
 
 				if self.current_red:
 					print("RED")
-					initial = time.now()
+					initial = datetime.now()
 					print(initial)
 				elif self.current_blue:
 					print("BLUE")
