@@ -10,7 +10,7 @@ class Follower:
  		# cv2.namedWindow("window", 1)
 
  		self.image_sub = rospy.Subscriber('camera/rgb/image_raw', Image, self.image_callback)
-		self.odom_sub = rospy.Subscriber('/odom', Odometry, self.callback)
+		#self.odom_sub = rospy.Subscriber('/odom', Odometry, self.callback)
 		self.cmd_vel_pub = rospy.Publisher('cmd_vel_mux/input/teleop', Twist, queue_size=1)
 		self.twist = Twist()
 		self.M = None
@@ -30,17 +30,17 @@ class Follower:
 	# 	cv2.imshow("window", mask)
 	# 	return mask[int(y), int(x)] == 255
 
-	def callback(self, msg):
-		print(msg.pose.pose)
+	# def callback(self, msg):
+	# 	print(msg.pose.pose)
 
 	def is_color(self, image, center, color):
 		cx, cy = center
+		print(image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0]) == color
 		return (image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0]) == color
 		
 	def is_red(self, image, center, color = (164, 18, 17)):
 		cx, cy = center
 		#cy -= 40
-		#print(image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0])
 		return self.is_color(image, (cx, cy), color)
 
 	def is_blue(self, image, center, color = (0, 0, 169)):
