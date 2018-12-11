@@ -105,9 +105,9 @@ class Follower:
             self.twist.linear.x = 0.3
             self.twist.angular.z = 0
             self.cmd_vel_pub.publish(self.twist)
-            self.twist.linear.x = 0
-            self.twist.angular.z = 0
-            self.cmd_vel_pub.publish(self.twist)
+        self.twist.linear.x = 0
+        self.twist.angular.z = 0
+        self.cmd_vel_pub.publish(self.twist)
 
         else:
             # calculate the centriod
