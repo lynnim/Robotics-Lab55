@@ -29,22 +29,22 @@ class Follower:
 
 	def is_color(self, image, center, color):
 		cx, cy = center
-		print(image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0]) == color
+		print(image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0]) == color)
 		return (image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0]) == color
 		
 	def is_red(self, image, center, color = (164, 18, 17)):
 		cx, cy = center
-		cy -= 40
+# 		cy -= 40
 		return self.is_color(image, (cx, cy), color)
 
 	def is_blue(self, image, center, color = (0, 0, 169)):
 		cx, cy = center
-		cy -= 40
+# 		cy -= 40
 		return self.is_color(image, (cx, cy), color)
 
 	def is_green(self, image, center, color = (170,168,42)):
 		cx, cy = center
-		cy -= 140
+# 		cy -= 140
 		return self.is_color(image, (cx, cy), color)
 
 	def turn_left(self):
