@@ -2,12 +2,15 @@
 import rospy, cv2, cv_bridge, numpy
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import Twist
+from nav_msgs.msg import Odometry
 
 class Follower:
 	def __init__(self):
  		self.bridge = cv_bridge.CvBridge()
  		# cv2.namedWindow("window", 1)
+
  		self.image_sub = rospy.Subscriber('camera/rgb/image_raw', Image, self.image_callback)
+		self.odom_sub = rospy.Subscriber('/odom', Odometry)
 		self.cmd_vel_pub = rospy.Publisher('cmd_vel_mux/input/teleop', Twist, queue_size=1)
 		self.twist = Twist()
 		self.M = None
@@ -27,24 +30,27 @@ class Follower:
 	# 	cv2.imshow("window", mask)
 	# 	return mask[int(y), int(x)] == 255
 
+	def callback(self, msg):
+		print msg.pose.pose
+
 	def is_color(self, image, center, color):
 		cx, cy = center
 		return (image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0]) == color
 		
 	def is_red(self, image, center, color = (164, 18, 17)):
 		cx, cy = center
-# 		cy -= 40
-		print(image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0])
+		#cy -= 40
+		#print(image[int(cx), int(cy), 2],image[int(cx), int(cy), 1], image[int(cx), int(cy), 0])
 		return self.is_color(image, (cx, cy), color)
 
 	def is_blue(self, image, center, color = (0, 0, 169)):
 		cx, cy = center
-# 		cy -= 40
+		#cy -= 40
 		return self.is_color(image, (cx, cy), color)
 
 	def is_green(self, image, center, color = (170,168,42)):
 		cx, cy = center
-# 		cy -= 140
+		#cy -= 140
 		return self.is_color(image, (cx, cy), color)
 
 	def turn_left(self):
@@ -123,6 +129,7 @@ class Follower:
 
 if __name__ == "__main__":
 	rospy.init_node('follower')
+	rospy.init_node('check_odometry')
 	follower = Follower()
 	rospy.spin()
 	# while (not rospy.is_shutdown()):
