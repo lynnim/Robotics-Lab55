@@ -19,14 +19,38 @@ class Follower:
     lower_yellow = numpy.array([19, 100, 100])
     upper_yellow = numpy.array([39, 255, 255])
     mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
+
+    lower_red = numpy.array([-10, 100, 100])
+    upper_red = numpy.array([10, 255, 255])
+    r_mask = cv2.inRange(hsv, lower_red, upper_red)
     
     h, w, d = image.shape
+    
+    #for the yellow
     search_top = 5*h/6 #put the frame 5/6 of the way down
     search_bot = search_top + 20 #use the 20 units in front of the robot from that 5/6 of the way down
-    mask[0:search_top, 0:w] = 0
-    mask[search_bot:h, 0:w] = 0
+    y_mask[0:search_top, 0:w] = 0
+    y_mask[search_bot:h, 0:w] = 0
+
+    #for the red
+    r_top = 4 * h / 5  
+    r_bot = r_top + 20  # use the 20 units in front of the robot from that 5/6 of the way down
+    r_mask[0:r_top, 0:w] = 0
+    r_mask[r_bot:h, 0:w] = 0
+    R = cv2.moments(r_mask)
+    
     M = cv2.moments(mask)
     if M['m00'] > 0:
+     if R['m00'] > 0:
+      # calculate the centriod
+      r_cx = int(R['m10'] / R['m00'])
+      r_cy = int(R['m01'] / R['m00'])
+      cv2.circle(image, (r_cx, r_cy), 10, (0, 0, 225), -1)
+      print("red = stop")
+      self.twist.linear.x = .2
+      self.twist.angular.z = .05
+      self.cmd_vel_pub.publish(self.twist)
+    else:
       #calculate the centriod
       cx = int(M['m10']/M['m00'])
       cy = int(M['m01']/M['m00'])
@@ -37,8 +61,8 @@ class Follower:
       self.twist.angular.z = -float(err) / 100
       self.cmd_vel_pub.publish(self.twist)
       # END CONTROL
-    cv2.imshow("window", image)
-    cv2.waitKey(3)
+  cv2.imshow("window", image)
+  cv2.waitKey(3)
 
 rospy.init_node('follower')
 follower = Follower()
