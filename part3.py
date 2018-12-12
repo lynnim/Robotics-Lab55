@@ -47,7 +47,7 @@ class Follower:
         #     r_cy = int(R['m01'] / R['m00'])
         #     cv2.circle(image, (r_cx, r_cy), 10, (225, 0, 0), -1)
         #     print("red = stop")
-        img = cv2.imread("ROBOT_INITIAL_POSE="-x -2.85 -y -0.27 -Y 1.53" roslaunch followbot launch.launch world_file:=shape.world.png")
+        img = cv2.imread("shape.png")
 		gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 		template = cv2.imread("leftred.png", cv2.IMREAD_GRAYSCALE)
 		w, h = template.shape[::-1]
