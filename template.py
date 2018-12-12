@@ -13,7 +13,7 @@ for pt in zip(*loc[::-1]):
     cv2.rectangle(img, pt, (pt[0] + w, pt[1] + h), (0, 255, 0), 3)
  
 
-cv2.namedWindow("img", WINDOW_NORMAL)
+cv2.namedWindow("img", cv2.WINDOW_NORMAL)
 cv2.resizewindow("img", 600, 600) 
 #cv2.imshow("img", img)
  
