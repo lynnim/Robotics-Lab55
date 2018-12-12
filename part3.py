@@ -52,7 +52,7 @@ class Follower:
     R = cv2.moments(r_mask)
 
     M = cv2.moments(y_mask)
-    if M['m00'] > 0:
+    if M['m00'] = 0:
         if R['m00'] > 0:
             # calculate the centriod
             r_cx = int(R['m10'] / R['m00'])
