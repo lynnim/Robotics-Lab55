@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-import rospy, cv2, cv_bridge
-import numpy as np
+import rospy, cv2, cv_bridge, numpy
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import Twist
 
@@ -75,7 +74,7 @@ class Follower:
 	    w, h = template.shape[::-1]
 
 	    result = cv2.matchTemplate(gray_img, template, cv2.TM_CCOEFF_NORMED)
-	    loc = np.where(result >= 0.4)
+	    loc = numpy.where(result >= 0.4)
 
 	    for pt in zip(*loc[::-1]):
 			cv2.rectangle(img, pt, (pt[0] + w, pt[1] + h), (0, 255, 0), 3)
