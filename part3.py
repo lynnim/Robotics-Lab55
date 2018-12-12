@@ -3,19 +3,29 @@ import cv2
 import numpy as np 
 
 # Read the main image 
-img = cv2.imread("shape.png") 
+img_rgb = cv2.imread('shape.png') 
 
-# Convert to grayscale 
-gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
+# Convert it to grayscale 
+img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY) 
 
 # Read the template 
-template1 = cv2.imread("left.png", cv2.IMREAD_GRAYSCALE) 
-#template2 = cv2.imread("right.png", cv2.IMREAD_GRAYSCALE)
+template = cv2.imread('left.png',0) 
 
-result1 = cv2.matchTemplate(gray_img, template1, cv2.TM_CCOEFF_NORMED)
-#result2 = cv2.matchTemplate(gray_img, template2, cv2.TM_CCOEFF_NORMED)
+# Store width and heigth of template in w and h 
+w, h = template.shape[::-1] 
 
-cv2.imshow("img", img)
-cv2.imshow("result1", result1)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+# Perform match operations. 
+res = cv2.matchTemplate(img_gray,template,cv2.TM_CCOEFF_NORMED) 
+
+# Specify a threshold 
+threshold = 0.8
+
+# Store the coordinates of matched area in a numpy array 
+loc = np.where( res >= threshold) 
+
+# Draw a rectangle around the matched region. 
+for pt in zip(*loc[::-1]): 
+    cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0,255,255), 2) 
+
+# Show the final image with the matched area. 
+cv2.imshow('Detected',img_rgb) 
