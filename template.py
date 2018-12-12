@@ -3,7 +3,7 @@ import numpy as np
  
 img = cv2.imread("shape.png")
 gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-template = cv2.imread("left.png")
+template = cv2.imread("left.png", 0)
 w, h = template.shape[::-1]
  
 result = cv2.matchTemplate(gray_img, template, cv2.TM_CCOEFF_NORMED)
