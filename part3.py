@@ -115,8 +115,8 @@ class Follower:
         self.cmd_vel_pub.publish(self.twist)
         # END CONTROL
         print(M['m00'])
-    cv2.imshow("window", image)
-    cv2.waitKey(3)
+        cv2.imshow("window", image)
+        cv2.waitKey(3)
 
 rospy.init_node('follower')
 follower = Follower()
