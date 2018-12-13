@@ -38,7 +38,7 @@ class Follower:
 		# END CONTROL
 
     else:
-	    img_rgb = cv2.imread(image) 
+	    	img_rgb = cv2.imread(image) 
 		img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY) 
 		
 		# template matching
