@@ -16,6 +16,18 @@ Green
 Take [H-10, 100, 100] and [H-10, 255, 255] as lower and upper bounds, respectively 
 """
 class Follower:
+    template1 = cv2.imread("left-triangle.jpg")
+    template2 = cv2.imread("right-triangle.jpg")
+    template3 = cv2.imread("triangle-up.jpg")
+
+    gray_temp1 = cv2.cvtColor(template1, cv2.COLOR_BGR2GRAY)
+    gray_temp2 = cv2.cvtColor(template2, cv2.COLOR_BGR2GRAY)
+    gray_temp3 = cv2.cvtColor(template3, cv2.COLOR_BGR2GRAY)
+
+    template1_res = cv2.resize(gray_temp1, (0,0), fx=0.3, fy=0.3)
+    template2_res = cv2.resize(gray_temp2, (0,0), fx=0.3, fy=0.3)
+    template3_res = cv2.resize(gray_temp3, (0,0), fx=0.3, fy=0.3)
+
   def __init__(self):
     self.bridge = cv_bridge.CvBridge()
     cv2.namedWindow("window", 1)
@@ -30,19 +42,7 @@ class Follower:
 
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     image_resize = cv2.resize(gray_image, (0,0), fx=0.5, fy=0.5)
-     
-    template1 = cv2.imread("left-triangle.jpg")
-    template2 = cv2.imread("right-triangle.jpg")
-    #template3 = cv2.imread("triangle-up.jpg")
-    
-    gray_temp1 = cv2.cvtColor(template1, cv2.COLOR_BGR2GRAY)
-    gray_temp2 = cv2.cvtColor(template2, cv2.COLOR_BGR2GRAY)
-    #gray_temp3 = cv2.cvtColor(template3, cv2.COLOR_BGR2GRAY)
 
-    template1_res = cv2.resize(gray_temp1, (0,0), fx=0.3, fy=0.3)
-    template2_res = cv2.resize(gray_temp2, (0,0), fx=0.3, fy=0.3)
-    #template3_res = cv2.resize(gray_temp3, (0,0), fx=0.5, fy=0.5)
-    
     lower_yellow = numpy.array([19, 100, 100])
     upper_yellow = numpy.array([39, 255, 255])
     y_mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
@@ -77,15 +77,15 @@ class Follower:
             
             image_result1 = cv2.matchTemplate(gray_image, gray_temp1, cv2.TM_CCOEFF_NORMED)
             image_result2 = cv2.matchTemplate(gray_image, gray_temp2, cv2.TM_CCOEFF_NORMED)
-            #image_result3 = cv2.matchTemplate(gray_image, gray_temp3, cv2.TM_CCOEFF_NORMED)
+            image_result3 = cv2.matchTemplate(gray_image, gray_temp3, cv2.TM_CCOEFF_NORMED)
 
             min_val1, max_val1, min_loc1, max_loc1 = cv2.minMaxLoc(image_result1)
             min_val2, max_val2, min_loc2, max_loc2 = cv2.minMaxLoc(image_result2)
-            #min_val3, max_val3, min_loc3, max_loc3 = cv2.minMaxLoc(image_result3)
+            min_val3, max_val3, min_loc3, max_loc3 = cv2.minMaxLoc(image_result3)
 
             print("left arrow: " + str(min_val1))
             print("right arrow: " + str(min_val2))
-            #print("star: " + str(min_val3))
+            print("star: " + str(min_val3))
 
             # if min_val1 > min_val2 and min_val1 >= -0.16:
             #     print("turning left")
