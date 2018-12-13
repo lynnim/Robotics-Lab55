@@ -35,16 +35,16 @@ class Follower:
     image_resize = cv2.resize(gray_image, (0,0), fx=0.5, fy=0.5)
      
     template1 = cv2.imread("arrow_left.png")
-    template2 = cv2.imread("arrow_right.png")
-    template3 = cv2.imread("black_star.png")
+    # template2 = cv2.imread("arrow_right.png")
+    # template3 = cv2.imread("black_star.png")
     
     gray_image1 = cv2.cvtColor(template1, cv2.COLOR_BGR2GRAY)
-    gray_image2 = cv2.cvtColor(template2, cv2.COLOR_BGR2GRAY)
-    gray_image3 = cv2.cvtColor(template3, cv2.COLOR_BGR2GRAY)
+    # gray_image2 = cv2.cvtColor(template2, cv2.COLOR_BGR2GRAY)
+    # gray_image3 = cv2.cvtColor(template3, cv2.COLOR_BGR2GRAY)
 
     template1_res = cv2.resize(gray_image1, (0,0), fx=0.3, fy=0.3)
-    template2_res = cv2.resize(gray_image2, (0,0), fx=0.3, fy=0.3)
-    template3_res = cv2.resize(gray_image3, (0,0), fx=0.3, fy=0.3)
+    # template2_res = cv2.resize(gray_image2, (0,0), fx=0.3, fy=0.3)
+    # template3_res = cv2.resize(gray_image3, (0,0), fx=0.3, fy=0.3)
     
     lower_yellow = numpy.array([19, 100, 100])
     upper_yellow = numpy.array([39, 255, 255])
@@ -77,17 +77,18 @@ class Follower:
         r_cy = int(R['m01'] / R['m00'])
         cv2.circle(image, (r_cx, r_cy), 10, (0, 0, 255), -1)
         print("RED")
+        
         image_result1 = cv2.matchTemplate(gray_image, template1, cv2.TM_CCOEFF_NORMED)
         min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result1)
         print("left arrow: " + str(min_val, max_val)) 
 
-        image_result2 = cv2.matchTemplate(gray_image, template2, cv2.TM_CCOEFF_NORMED)
-        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result2)
-        print("right arrow: " + str(min_val, max_val)) 
+        # image_result2 = cv2.matchTemplate(gray_image, template2, cv2.TM_CCOEFF_NORMED)
+        # min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result2)
+        # print("right arrow: " + str(min_val, max_val)) 
 
-        image_result3 = cv2.matchTemplate(gray_image, template3, cv2.TM_CCOEFF_NORMED)
-        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result3)
-        print("star: " + str(min_val, max_val)) 
+        # image_result3 = cv2.matchTemplate(gray_image, template3, cv2.TM_CCOEFF_NORMED)
+        # min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result3)
+        # print("star: " + str(min_val, max_val)) 
 
       else:
         # calculate the centriod
