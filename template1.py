@@ -25,7 +25,7 @@ class Follower:
     loc = numpy.where(result >= 0.4)
 
     for pt in zip(*loc[::-1]):
-    cv2.rectangle(img, pt, (pt[0] + w, pt[1] + h), (0, 255, 0), 3)
+      cv2.rectangle(img, pt, (pt[0] + w, pt[1] + h), (0, 255, 0), 3)
 
     cv2.imshow("window", image)
     cv2.waitKey(3)
