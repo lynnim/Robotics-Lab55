@@ -104,6 +104,7 @@ class Follower:
         #print(str(-float(err) / 100))
         self.cmd_vel_pub.publish(self.twist)
         # END CONTROL
+    print(M['m00'])
     cv2.imshow("window", image)
     cv2.waitKey(3)
 
