@@ -88,17 +88,17 @@ class Follower:
             print("right arrow: " + str(min_val2))
             print("star: " + str(min_val3))
 
-            if min_val1 > min_val2:
+            if min_val1 > min_val2 and min_val1 > -0.16:
                 print("turning left")
                 self.twist.linear.x = 0.2
                 self.twist.angular.z = -.05
                 self.cmd_vel_pub.publish(self.twist)
             
-            elif min_val1 < min_val2:
-                print("turning right")
-                self.twist.linear.x = 0.2
-                self.twist.angular.z = .05
-                self.cmd_vel_pub.publish(self.twist)
+            # elif min_val1 < min_val2:
+            #     print("turning right")
+            #     self.twist.linear.x = 0.2
+            #     self.twist.angular.z = .05
+            #     self.cmd_vel_pub.publish(self.twist)
             else:
                 print("not turning") 
 
