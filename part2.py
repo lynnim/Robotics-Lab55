@@ -123,6 +123,7 @@ class Follower:
         self.cmd_vel_pub.publish(self.twist)
         # END CONTROL
     else: 
+        print("STOPPING")
         self.twist.linear.x = 1
         self.twist.angular.z = 0
         self.cmd_vel_pub.publish(self.twist)
