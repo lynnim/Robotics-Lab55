@@ -42,9 +42,9 @@ class Follower:
     # gray_temp2 = cv2.cvtColor(template2, cv2.COLOR_BGR2GRAY)
     # gray_temp3 = cv2.cvtColor(template3, cv2.COLOR_BGR2GRAY)
 
-    template1_res = cv2.resize(gray_image1, (0,0), fx=0.3, fy=0.3)
-    # template2_res = cv2.resize(gray_image2, (0,0), fx=0.3, fy=0.3)
-    # template3_res = cv2.resize(gray_image3, (0,0), fx=0.3, fy=0.3)
+    template1_res = cv2.resize(gray_temp1, (0,0), fx=0.3, fy=0.3)
+    # template2_res = cv2.resize(gray_temp2, (0,0), fx=0.3, fy=0.3)
+    # template3_res = cv2.resize(gray_temp3, (0,0), fx=0.3, fy=0.3)
     
     lower_yellow = numpy.array([19, 100, 100])
     upper_yellow = numpy.array([39, 255, 255])
