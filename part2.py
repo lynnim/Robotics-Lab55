@@ -140,6 +140,7 @@ class Follower:
             print("move")
             self.twist.linear.x = 1
             self.twist.angular.z = 0
+            print("stop")
             self.cmd_vel_pub.publish(self.twist)
             self.twist.linear.x = 0
             self.twist.angular.z = 0
