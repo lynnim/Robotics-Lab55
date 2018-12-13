@@ -76,7 +76,7 @@ class Follower:
     R = cv2.moments(r_mask)
 
     M = cv2.moments(y_mask)
-    if M['m00'] > 0 and not self.STOP:
+    if M['m00'] > 0:
       if G['m00'] > 0:
         # calculate the centriod
         g_cx = int(G['m10'] / G['m00'])
@@ -108,6 +108,7 @@ class Follower:
 
       else:
         if not self.STOP:
+            print("YELLOW")
             # calculate the centriod
             cx = int(M['m10'] / M['m00'])
             cy = int(M['m01'] / M['m00'])
