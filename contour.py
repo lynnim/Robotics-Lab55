@@ -12,7 +12,6 @@ mask = cv2.inRange(hsv, lower_red, upper_red)
 
 _, contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
 
-
 cv2.drawContours(image, contours, -1, (0,255,0), 3)
 
 cv2.namedWindow('Display', cv2.WINDOW_NORMAL)
