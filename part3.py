@@ -98,8 +98,8 @@ class Follower:
             #     self.twist.linear.x = 0.2
             #     self.twist.angular.z = .05
             #     self.cmd_vel_pub.publish(self.twist)
-            else:
-                print("not turning") 
+#             else:
+#                 print("not turning") 
 
         # calculate the centriod
         cx = int(M['m10'] / M['m00'])
