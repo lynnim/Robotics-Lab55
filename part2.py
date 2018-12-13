@@ -75,10 +75,8 @@ class Follower:
     r_mask[r_bot:h, 0:w] = 0
     R = cv2.moments(r_mask)
 
-
     M = cv2.moments(y_mask)
     if M['m00'] > 0 and not self.STOP:
-
       if G['m00'] > 0:
         # calculate the centriod
         g_cx = int(G['m10'] / G['m00'])
@@ -109,30 +107,31 @@ class Follower:
         self.cmd_vel_pub.publish(self.twist)
 
       else:
-        # calculate the centriod
-        cx = int(M['m10'] / M['m00'])
-        cy = int(M['m01'] / M['m00'])
-        cv2.circle(image, (cx, cy), 20, (0, 0, 255), -1)
+        if not self.STOP:
+            # calculate the centriod
+            cx = int(M['m10'] / M['m00'])
+            cy = int(M['m01'] / M['m00'])
+            cv2.circle(image, (cx, cy), 20, (0, 0, 255), -1)
 
-        # BEGIN CONTROL
-        err = cx - w / 2
-        self.twist.linear.x = 0.2
-        self.twist.angular.z = -float(err) / 100
-        #print("twisting:")
-        #print(str(-float(err) / 100))
-        self.cmd_vel_pub.publish(self.twist)
-        # END CONTROL
-    else: 
-        steps = 100
-        print("STOPPING")
-        for s in range(steps):
-            print("step: " + str(s))
-            self.twist.linear.x = 1
-            self.twist.angular.z = -1
+            # BEGIN CONTROL
+            err = cx - w / 2
+            self.twist.linear.x = 0.2
+            self.twist.angular.z = -float(err) / 100
+            #print("twisting:")
+            #print(str(-float(err) / 100))
             self.cmd_vel_pub.publish(self.twist)
-    self.twist.linear.x = 0
-    self.twist.angular.z = 0
-    self.cmd_vel_pub.publish(self.twist)
+            # END CONTROL
+        else: 
+            steps = 100
+            print("STOPPING")
+            for s in range(steps):
+                print("step: " + str(s))
+                self.twist.linear.x = 1
+                self.twist.angular.z = -1
+                self.cmd_vel_pub.publish(self.twist)
+            self.twist.linear.x = 0
+            self.twist.angular.z = 0
+            self.cmd_vel_pub.publish(self.twist)
     cv2.imshow("window", image)
     cv2.waitKey(3)
 
