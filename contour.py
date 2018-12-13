@@ -14,7 +14,11 @@ upper_red = np.array([10, 255, 255])
 mask = cv2.inRange(hsv, lower_red, upper_red)
 
 contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
-print(contours)
+#print(contours)
+if contours[0] == 1:
+	print("STAR")
+else:
+	print("WTF")
 
 #cv2.drawContours(image1, contours, -1, (0,255,0), 3)
 cv2.drawContours(image2, contours, -1, (255,0,0), 3)
