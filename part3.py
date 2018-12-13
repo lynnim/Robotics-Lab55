@@ -93,9 +93,14 @@ class Follower:
                 self.twist.linear.x = 0.2
                 self.twist.angular.z = -.05
                 self.cmd_vel_pub.publish(self.twist)
+            elif min_val2 < min_val1:
+                print("turning right")
+                self.twist.linear.x = 0.2
+                self.twist.angular.z = .05
+                self.cmd_vel_pub.publish(self.twist)
             else:
                 print("not turning")
-
+                
 
             # image_result2 = cv2.matchTemplate(gray_image, gray_temp2, cv2.TM_CCOEFF_NORMED)
             # min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result2)
