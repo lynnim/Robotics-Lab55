@@ -77,15 +77,15 @@ class Follower:
             
             image_result1 = cv2.matchTemplate(gray_image, gray_temp1, cv2.TM_CCOEFF_NORMED)
             image_result2 = cv2.matchTemplate(gray_image, gray_temp2, cv2.TM_CCOEFF_NORMED)
-            image_result3 = cv2.matchTemplate(gray_image, gray_temp3, cv2.TM_CCOEFF_NORMED)
+            #image_result3 = cv2.matchTemplate(gray_image, gray_temp3, cv2.TM_CCOEFF_NORMED)
 
             min_val1, max_val1, min_loc1, max_loc1 = cv2.minMaxLoc(image_result1)
             min_val2, max_val2, min_loc2, max_loc2 = cv2.minMaxLoc(image_result2)
-            min_val3, max_val3, min_loc3, max_loc3 = cv2.minMaxLoc(image_result3)
+            #min_val3, max_val3, min_loc3, max_loc3 = cv2.minMaxLoc(image_result3)
 
             print("left arrow: " + str(min_val1))
             print("right arrow: " + str(min_val2))
-            print("star: " + str(min_val3))
+            #print("star: " + str(min_val3))
 
             # if min_val1 > min_val2 and min_val1 >= -0.16:
             #     print("turning left")
@@ -98,8 +98,8 @@ class Follower:
             #     self.twist.linear.x = 0.2
             #     self.twist.angular.z = .05
             #     self.cmd_vel_pub.publish(self.twist)
-#             else:
-#                 print("not turning") 
+            # else:
+            #     print("not turning") 
 
         # calculate the centriod
         cx = int(M['m10'] / M['m00'])
