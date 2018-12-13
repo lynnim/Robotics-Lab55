@@ -84,9 +84,17 @@ class Follower:
             min_val2, max_val2, min_loc2, max_loc2 = cv2.minMaxLoc(image_result2)
             min_val3, max_val3, min_loc3, max_loc3 = cv2.minMaxLoc(image_result3)
 
-            print("left arrow: " + str(min_val1) + "," + str(min_loc1))
-            print("right arrow: " + str(min_val2) + "," + str(min_loc2))
-            print("star: " + str(min_val3) + str(min_loc3))
+            print("left arrow: " + str(min_val1))
+            print("right arrow: " + str(min_val2))
+            print("star: " + str(min_val3))
+
+            if min_val1 > min_val2:
+                self.twist.linear.x = .2
+                self.twist.angular.z = .05
+                self.cmd_vel_pub.publish(self.twist)
+            else:
+                None
+
 
             # image_result2 = cv2.matchTemplate(gray_image, gray_temp2, cv2.TM_CCOEFF_NORMED)
             # min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result2)
