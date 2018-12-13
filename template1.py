@@ -45,7 +45,7 @@ class Follower:
 		template = cv2.imread("leftred.png",0) 
 		w, h = template.shape[::-1]
 		 
-		result = cv2.matchTemplate(gray_img, template, cv2.TM_CCOEFF_NORMED)
+		result = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
 		loc = numpy.where(result >= 0.4)
 		 
 		for pt in zip(*loc[::-1]):
