@@ -127,11 +127,11 @@ class Follower:
             for s in range(100):
                 print("step: " + str(s))
                 self.twist.linear.x = 1
-                self.twist.angular.z = -1
+                self.twist.angular.z = -5
                 self.cmd_vel_pub.publish(self.twist)
             for s2 in range(3):
-                self.twist.linear.x = 4
-                self.twist.angular.z = 1
+                self.twist.linear.x = 5
+                self.twist.angular.z = 5
                 self.cmd_vel_pub.publish(self.twist)
             self.twist.linear.x = 0
             self.twist.angular.z = 0
