@@ -2,7 +2,8 @@ import cv2
 import numpy as np
 
 image = cv2.imread('leftarr.png')
-blurred = cv2.GaussianBlur(image, cv2.COLOR_BGR2HSV)
+blurred = cv2.GaussianBlur(image, (5,5), 0)
+hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
 
 lower_red = numpy.array([-10, 100, 100])
 upper_red = numpy.array([10, 255, 255])
@@ -17,3 +18,4 @@ cv2.drawContours(image, contours, -1, (0,255,0), 3)
 cv2.namedWindow('Display', cv2.WINDOW_NORMAL)
 cv2.imshow('Display', image)
 cv2.waitKey()
+
