@@ -74,7 +74,6 @@ class Follower:
             r_cx = int(R['m10'] / R['m00'])
             r_cy = int(R['m01'] / R['m00'])
             cv2.circle(image, (r_cx, r_cy), 10, (0, 0, 255), -1)
-            print("RED")
             
             image_result1 = cv2.matchTemplate(gray_image, gray_temp1, cv2.TM_CCOEFF_NORMED)
             image_result2 = cv2.matchTemplate(gray_image, gray_temp2, cv2.TM_CCOEFF_NORMED)
@@ -88,9 +87,9 @@ class Follower:
             print("right arrow: " + str(min_val2))
             print("star: " + str(min_val3))
 
-            if min_val1 > -0.16:
+            if min_val1 > min_val2 and min_val1 > -0.16:
                 print("turning left")
-                self.twist.linear.x = 0.2
+                self.twist.linear.x = .2
                 self.twist.angular.z = .05
                 self.cmd_vel_pub.publish(self.twist)
             
