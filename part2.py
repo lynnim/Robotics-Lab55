@@ -25,6 +25,7 @@ class Follower:
     self.image_sub = rospy.Subscriber('camera/rgb/image_raw', Image, self.image_callback)
     self.cmd_vel_pub = rospy.Publisher('cmd_vel_mux/input/teleop', Twist, queue_size=1)
     self.twist = Twist()
+    self.STOP = False
 
   def image_callback(self, msg):
     image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
@@ -42,6 +43,9 @@ class Follower:
     upper_blue = numpy.array([130, 255, 255])
     b_mask = cv2.inRange(hsv, lower_blue, upper_blue)
 
+    lower_red = numpy.array([-10, 100, 100])
+    upper_red = numpy.array([10, 255, 255])
+    r_mask = cv2.inRange(hsv, lower_red, upper_red)
 
     h, w, d = image.shape
 
@@ -65,17 +69,21 @@ class Follower:
     b_mask[b_bot:h, 0:w] = 0
     B = cv2.moments(b_mask)
 
+    r_top = 4 * h / 5  # put the frame 5/6 of the way down
+    r_bot = r_top + 20  # use the 20 units in front of the robot from that 5/6 of the way down
+    r_mask[0:r_top, 0:w] = 0
+    r_mask[r_bot:h, 0:w] = 0
+    R = cv2.moments(r_mask)
 
 
     M = cv2.moments(y_mask)
-    if M['m00'] > 0:
+    if M['m00'] > 0 and not self.STOP:
 
       if G['m00'] > 0:
         # calculate the centriod
         g_cx = int(G['m10'] / G['m00'])
         g_cy = int(G['m01'] / G['m00'])
         cv2.circle(image, (g_cx, g_cy), 10, (0, 225, 0), -1)
-        print("green = left")
         self.twist.linear.x = .2
         self.twist.angular.z = .05
         self.cmd_vel_pub.publish(self.twist)
@@ -85,9 +93,19 @@ class Follower:
         b_cx = int(B['m10'] / B['m00'])
         b_cy = int(B['m01'] / B['m00'])
         cv2.circle(image, (b_cx, b_cy), 10, (225, 0, 0), -1)
-        print("blue = right")
         self.twist.linear.x = .2
         self.twist.angular.z = -.06
+        self.cmd_vel_pub.publish(self.twist)
+
+      elif R['m00'] > 0:
+        # calculate the centriod
+        r_cx = int(R['m10'] / R['m00'])
+        r_cy = int(R['m01'] / R['m00'])
+        cv2.circle(image, (r_cx, r_cy), 10, (0, 0, 255), -1)
+        print("RED")
+        self.STOP = True
+        self.twist.linear.x = 0.2
+        self.twist.angular.z = 0
         self.cmd_vel_pub.publish(self.twist)
 
       else:
@@ -104,9 +122,12 @@ class Follower:
         #print(str(-float(err) / 100))
         self.cmd_vel_pub.publish(self.twist)
         # END CONTROL
+    else: 
+        self.twist.linear.x = 1
+        self.twist.angular.x = 0
+        self.cmd_vel_pub.publish(self.twist)
     cv2.imshow("window", image)
     cv2.waitKey(3)
-
 
 rospy.init_node('follower')
 follower = Follower()
