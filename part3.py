@@ -89,8 +89,8 @@ class Follower:
 
             if min_val1 > min_val2 and min_val1 >= -0.16:
                 print("turning left")
-                self.twist.linear.x = .5
-                self.twist.angular.z = -0.05
+                self.twist.linear.x = 0.2
+                self.twist.angular.z = -0.06
                 self.cmd_vel_pub.publish(self.twist)
             
             # elif min_val1 < min_val2 and min_val2 >= -0.17:
