@@ -80,7 +80,7 @@ class Follower:
         
         image_result1 = cv2.matchTemplate(gray_image, gray_temp1, cv2.TM_CCOEFF_NORMED)
         min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result1)
-        print("left arrow: " + str(min_val, max_val)) 
+        print("left arrow: " + str(min_val) + "," + str(max_val)) 
 
         # image_result2 = cv2.matchTemplate(gray_image, gray_temp2, cv2.TM_CCOEFF_NORMED)
         # min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result2)
