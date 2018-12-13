@@ -90,11 +90,11 @@ class Follower:
 
             if min_val1 > min_val2:
                 print("turning left")
-                self.twist.linear.x = .2
+                self.twist.linear.x = 1
                 self.twist.angular.z = .05
                 self.cmd_vel_pub.publish(self.twist)
             else:
-                None
+                print("not turning")
 
 
             # image_result2 = cv2.matchTemplate(gray_image, gray_temp2, cv2.TM_CCOEFF_NORMED)
