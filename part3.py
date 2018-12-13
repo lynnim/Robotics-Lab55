@@ -15,19 +15,20 @@ Green
 [[[ 60 193 169]]]
 Take [H-10, 100, 100] and [H-10, 255, 255] as lower and upper bounds, respectively 
 """
+
+template1 = cv2.imread("left-triangle.jpg")
+template2 = cv2.imread("right-triangle.jpg")
+template3 = cv2.imread("triangle-up.jpg")
+
+gray_temp1 = cv2.cvtColor(template1, cv2.COLOR_BGR2GRAY)
+gray_temp2 = cv2.cvtColor(template2, cv2.COLOR_BGR2GRAY)
+gray_temp3 = cv2.cvtColor(template3, cv2.COLOR_BGR2GRAY)
+
+template1_res = cv2.resize(gray_temp1, (0,0), fx=0.3, fy=0.3)
+template2_res = cv2.resize(gray_temp2, (0,0), fx=0.3, fy=0.3)
+template3_res = cv2.resize(gray_temp3, (0,0), fx=0.3, fy=0.3)
+
 class Follower:
-    template1 = cv2.imread("left-triangle.jpg")
-    template2 = cv2.imread("right-triangle.jpg")
-    template3 = cv2.imread("triangle-up.jpg")
-
-    gray_temp1 = cv2.cvtColor(template1, cv2.COLOR_BGR2GRAY)
-    gray_temp2 = cv2.cvtColor(template2, cv2.COLOR_BGR2GRAY)
-    gray_temp3 = cv2.cvtColor(template3, cv2.COLOR_BGR2GRAY)
-
-    template1_res = cv2.resize(gray_temp1, (0,0), fx=0.3, fy=0.3)
-    template2_res = cv2.resize(gray_temp2, (0,0), fx=0.3, fy=0.3)
-    template3_res = cv2.resize(gray_temp3, (0,0), fx=0.3, fy=0.3)
-
     def __init__(self):
         self.bridge = cv_bridge.CvBridge()
         cv2.namedWindow("window", 1)
