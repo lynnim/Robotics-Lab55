@@ -5,8 +5,8 @@ image = cv2.imread('leftarr.png')
 blurred = cv2.GaussianBlur(image, (5,5), 0)
 hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
 
-lower_red = numpy.array([-10, 100, 100])
-upper_red = numpy.array([10, 255, 255])
+lower_red = np.array([-10, 100, 100])
+upper_red = np.array([10, 255, 255])
 mask = cv2.inRange(hsv, lower_red, upper_red)
 
 
