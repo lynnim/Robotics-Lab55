@@ -6,11 +6,11 @@ from geometry_msgs.msg import Twist
 
 # Read the main image 
 
-self.bridge = cv_bridge.CvBridge()
-cv2.namedWindow("window", 1)
-self.image_sub = rospy.Subscriber('camera/rgb/image_raw', Image, self.image_callback)
-self.cmd_vel_pub = rospy.Publisher('cmd_vel_mux/input/teleop', Twist, queue_size=1)
-self.twist = Twist()
+bridge = cv_bridge.CvBridge()
+namedWindow("window", 1)
+image_sub = rospy.Subscriber('camera/rgb/image_raw', Image, self.image_callback)
+cmd_vel_pub = rospy.Publisher('cmd_vel_mux/input/teleop', Twist, queue_size=1)
+twist = Twist()
 image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
 #hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 img_rgb = cv2.imread(image) 
@@ -30,7 +30,7 @@ for pt in zip(*loc[::-1]):
  
 cv2.namedWindow("img", cv2.WINDOW_NORMAL)
 cv2.resizeWindow("img", 600, 600) 
-cv2.imshow("img", img) 
+cv2.imshow("img", image) 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
  
