@@ -94,11 +94,11 @@ class Follower:
                 self.twist.angular.z = .05
                 self.cmd_vel_pub.publish(self.twist)
             
-            # elif min_val1 < min_val2:
-            #     print("turning right")
-            #     self.twist.linear.x = 0.2
-            #     self.twist.angular.z = .05
-            #     self.cmd_vel_pub.publish(self.twist)
+            elif min_val1 < min_val2 and min_val2 > -0.17:
+                print("turning right")
+                self.twist.linear.x = 0.2
+                self.twist.angular.z = .05
+                self.cmd_vel_pub.publish(self.twist)
             else:
                 print("not turning") 
 
