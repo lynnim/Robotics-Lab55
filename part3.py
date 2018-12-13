@@ -31,9 +31,9 @@ class Follower:
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     image_resize = cv2.resize(gray_image, (0,0), fx=0.5, fy=0.5)
      
-    template1 = cv2.imread("arrow_left.png")
-    template2 = cv2.imread("arrow_right.png")
-    template3 = cv2.imread("black_star.png")
+    template1 = cv2.imread("left-triangle.jpg")
+    template2 = cv2.imread("right-triangle.jpg")
+    template3 = cv2.imread("triangle-up.jpg")
     
     gray_temp1 = cv2.cvtColor(template1, cv2.COLOR_BGR2GRAY)
     gray_temp2 = cv2.cvtColor(template2, cv2.COLOR_BGR2GRAY)
