@@ -41,7 +41,7 @@ class Follower:
 
     template1_res = cv2.resize(gray_temp1, (0,0), fx=0.3, fy=0.3)
     template2_res = cv2.resize(gray_temp2, (0,0), fx=0.3, fy=0.3)
-    template3_res = cv2.resize(gray_temp3, (0,0), fx=0.2, fy=0.2)
+    template3_res = cv2.resize(gray_temp3, (0,0), fx=0.5, fy=0.5)
     
     lower_yellow = numpy.array([19, 100, 100])
     upper_yellow = numpy.array([39, 255, 255])
