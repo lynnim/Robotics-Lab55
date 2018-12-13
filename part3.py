@@ -39,7 +39,7 @@ class Follower:
     # template3 = cv2.imread("black_star.png")
     
     gray_temp1 = cv2.cvtColor(template1, cv2.COLOR_BGR2GRAY)
-    # gray_temp2 = cv2.cvtColor(template2, cv2.COLOR_BGR2GRAY)
+    #gray_temp2 = cv2.cvtColor(template2, cv2.COLOR_BGR2GRAY)
     # gray_temp3 = cv2.cvtColor(template3, cv2.COLOR_BGR2GRAY)
 
     template1_res = cv2.resize(gray_temp1, (0,0), fx=0.3, fy=0.3)
@@ -81,11 +81,12 @@ class Follower:
             
             image_result1 = cv2.matchTemplate(gray_image, gray_temp1, cv2.TM_CCOEFF_NORMED)
             min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result1)
-
-            image_result2 = cv2.matchTemplate(gray_image, gray_temp2, cv2.TM_CCOEFF_NORMED)
-            min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result2)
             print("left arrow: " + str(min_val) + "," + str(max_val))
-            print("right arrow: " + str(min_val, max_val))  
+
+            # image_result2 = cv2.matchTemplate(gray_image, gray_temp2, cv2.TM_CCOEFF_NORMED)
+            # min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result2)
+            
+            #print("right arrow: " + str(min_val, max_val))  
             
             if min_val < -0.16:
                 self.twist.linear.x = .2
