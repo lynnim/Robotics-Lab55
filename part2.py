@@ -128,22 +128,22 @@ class Follower:
                 print("step: " + str(s))
                 self.twist.linear.x = 1
                 self.twist.angular.z = -1
-                self.cmd_vel_pub.publish(self.twist)
+            self.cmd_vel_pub.publish(self.twist)
             for s2 in range(20):
                 self.twist.linear.x = 10
                 self.twist.angular.z = 5
-                self.cmd_vel_pub.publish(self.twist)
+            self.cmd_vel_pub.publish(self.twist)
             for s3 in range(10):
                 self.twist.linear.x = 10
                 self.twist.angular.z = 5
-                self.cmd_vel_pub.publish(self.twist)
+            self.cmd_vel_pub.publish(self.twist)
             print("move")
             self.twist.linear.x = 1
             self.twist.angular.z = 0
             self.cmd_vel_pub.publish(self.twist)
-        self.twist.linear.x = 0
-        self.twist.angular.z = 0
-        self.cmd_vel_pub.publish(self.twist)
+            self.twist.linear.x = 0
+            self.twist.angular.z = 0
+            self.cmd_vel_pub.publish(self.twist)
     cv2.imshow("window", image)
     cv2.waitKey(3)
 
@@ -151,3 +151,4 @@ rospy.init_node('follower')
 follower = Follower()
 rospy.spin()
 # END ALL
+
