@@ -71,26 +71,26 @@ class Follower:
 
     M = cv2.moments(y_mask)
     if M['m00'] > 0:
-      if R['m00'] > 0:
-        # calculate the centriod
-        r_cx = int(R['m10'] / R['m00'])
-        r_cy = int(R['m01'] / R['m00'])
-        cv2.circle(image, (r_cx, r_cy), 10, (0, 0, 255), -1)
-        print("RED")
-        
-        image_result1 = cv2.matchTemplate(gray_image, gray_temp1, cv2.TM_CCOEFF_NORMED)
-        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result1)
-        print("left arrow: " + str(min_val) + "," + str(max_val)) 
 
-        # image_result2 = cv2.matchTemplate(gray_image, gray_temp2, cv2.TM_CCOEFF_NORMED)
-        # min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result2)
-        # print("right arrow: " + str(min_val, max_val)) 
+        if R['m00'] > 0:
+            # calculate the centriod
+            r_cx = int(R['m10'] / R['m00'])
+            r_cy = int(R['m01'] / R['m00'])
+            cv2.circle(image, (r_cx, r_cy), 10, (0, 0, 255), -1)
+            print("RED")
+            
+            image_result1 = cv2.matchTemplate(gray_image, gray_temp1, cv2.TM_CCOEFF_NORMED)
+            min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result1)
+            print("left arrow: " + str(min_val) + "," + str(max_val)) 
 
-        # image_result3 = cv2.matchTemplate(gray_image, gray_temp3, cv2.TM_CCOEFF_NORMED)
-        # min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result3)
-        # print("star: " + str(min_val, max_val)) 
+            # image_result2 = cv2.matchTemplate(gray_image, gray_temp2, cv2.TM_CCOEFF_NORMED)
+            # min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result2)
+            # print("right arrow: " + str(min_val, max_val)) 
 
-      else:
+            # image_result3 = cv2.matchTemplate(gray_image, gray_temp3, cv2.TM_CCOEFF_NORMED)
+            # min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result3)
+            # print("star: " + str(min_val, max_val)) 
+
         # calculate the centriod
         cx = int(M['m10'] / M['m00'])
         cy = int(M['m01'] / M['m00'])
@@ -104,7 +104,7 @@ class Follower:
         #print(str(-float(err) / 100))
         self.cmd_vel_pub.publish(self.twist)
         # END CONTROL
-    print(M['m00'])
+        print(M['m00'])
     cv2.imshow("window", image)
     cv2.waitKey(3)
 
