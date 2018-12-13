@@ -4,7 +4,6 @@ import rospy, cv2, cv_bridge, numpy
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import Twist
 
-
 """
 Yellow
 [[[ 29 191 171]]]
@@ -34,7 +33,7 @@ class Follower:
      
     template1 = cv2.imread("arrow_left.png")
     template2 = cv2.imread("arrow_right.png")
-    template3 = cv2.imread("star.png")
+    template3 = cv2.imread("black_star.png")
     
     gray_temp1 = cv2.cvtColor(template1, cv2.COLOR_BGR2GRAY)
     gray_temp2 = cv2.cvtColor(template2, cv2.COLOR_BGR2GRAY)
@@ -42,7 +41,7 @@ class Follower:
 
     template1_res = cv2.resize(gray_temp1, (0,0), fx=0.3, fy=0.3)
     template2_res = cv2.resize(gray_temp2, (0,0), fx=0.3, fy=0.3)
-    template3_res = cv2.resize(gray_temp3, (0,0), fx=0.2, fy=0.2)
+    template3_res = cv2.resize(gray_temp3, (0,0), fx=0.3, fy=0.3)
     
     lower_yellow = numpy.array([19, 100, 100])
     upper_yellow = numpy.array([39, 255, 255])
