@@ -17,11 +17,11 @@ mask = cv2.inRange(hsv, lower_red, upper_red)
 contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
 print(contours)
 
-cv2.drawContours(image1, contours, -1, (0,255,0), 3)
+#cv2.drawContours(image1, contours, -1, (0,255,0), 3)
 cv2.drawContours(image2, contours, -1, (255,0,0), 3)
 
 cv2.namedWindow('Display', cv2.WINDOW_NORMAL)
-cv2.imshow('Display', image1)
-cv2.imshow('Display2', image2)
+cv2.imshow('star', image1)
+#cv2.imshow('left_arrow', image2)
 cv2.waitKey()
 
