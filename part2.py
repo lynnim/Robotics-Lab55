@@ -124,20 +124,20 @@ class Follower:
             # END CONTROL
         else: 
             print("STOPPING")
-            for s in range(150):
-                print("step: " + str(s))
-                self.twist.linear.x = 1
-                self.twist.angular.z = -1
-            self.cmd_vel_pub.publish(self.twist)
-            for s2 in range(20):
-                self.twist.linear.x = 10
-                self.twist.angular.z = 5
-            self.cmd_vel_pub.publish(self.twist)
-            for s3 in range(10):
-                self.twist.linear.x = 10
-                self.twist.angular.z = 5
-            self.cmd_vel_pub.publish(self.twist)
-            print("move")
+            # for s in range(150):
+            #     print("step: " + str(s))
+            #     self.twist.linear.x = 1
+            #     self.twist.angular.z = -1
+            # self.cmd_vel_pub.publish(self.twist)
+            # for s2 in range(20):
+            #     self.twist.linear.x = 10
+            #     self.twist.angular.z = 5
+            # self.cmd_vel_pub.publish(self.twist)
+            # for s3 in range(10):
+            #     self.twist.linear.x = 10
+            #     self.twist.angular.z = 5
+            # self.cmd_vel_pub.publish(self.twist)
+            # print("move")
             self.twist.linear.x = 1
             self.twist.angular.z = 0
             print("stop")
