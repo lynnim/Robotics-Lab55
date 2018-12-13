@@ -36,7 +36,7 @@ class Follower:
      
     template1 = cv2.imread("arrow_left.png")
     template2 = cv2.imread("arrow_right.png")
-    template3 = cv2.imread("black_star.png")
+    template3 = cv2.imread("star_.png")
     
     gray_temp1 = cv2.cvtColor(template1, cv2.COLOR_BGR2GRAY)
     gray_temp2 = cv2.cvtColor(template2, cv2.COLOR_BGR2GRAY)
@@ -87,8 +87,8 @@ class Follower:
             min_val2, max_val2, min_loc2, max_loc2 = cv2.minMaxLoc(image_result2)
             min_val3, max_val3, min_loc3, max_loc3 = cv2.minMaxLoc(image_result3)
 
-            print("left arrow: " + str(min_val1) + str(min_loc1))
-            print("right arrow: " + str(min_val2) + str(min_loc2))
+            print("left arrow: " + str(min_val1) + "," + str(min_loc1))
+            print("right arrow: " + str(min_val2) + "," + str(min_loc2))
             print("star: " + str(min_val3) + str(min_loc3))
 
             # image_result2 = cv2.matchTemplate(gray_image, gray_temp2, cv2.TM_CCOEFF_NORMED)
