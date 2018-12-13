@@ -16,8 +16,6 @@ Green
 [[[ 60 193 169]]]
 Take [H-10, 100, 100] and [H-10, 255, 255] as lower and upper bounds, respectively 
 """
-
-
 class Follower:
   def __init__(self):
     self.bridge = cv_bridge.CvBridge()
@@ -36,7 +34,7 @@ class Follower:
      
     template1 = cv2.imread("arrow_left.png")
     template2 = cv2.imread("arrow_right.png")
-    template3 = cv2.imread("star_.png")
+    template3 = cv2.imread("star.png")
     
     gray_temp1 = cv2.cvtColor(template1, cv2.COLOR_BGR2GRAY)
     gray_temp2 = cv2.cvtColor(template2, cv2.COLOR_BGR2GRAY)
