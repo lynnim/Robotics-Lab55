@@ -88,12 +88,12 @@ class Follower:
             
             #print("right arrow: " + str(min_val, max_val))  
             
-            if min_val < -0.16:
-                self.twist.linear.x = .2
-                self.twist.angular.z = .05
-                self.cmd_vel_pub.publish(self.twist)
-            else:
-                None
+            # if min_val < -0.16:
+            #     self.twist.linear.x = .2
+            #     self.twist.angular.z = .05
+            #     self.cmd_vel_pub.publish(self.twist)
+            # else:
+            #     None
             # image_result3 = cv2.matchTemplate(gray_image, gray_temp3, cv2.TM_CCOEFF_NORMED)
             # min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result3)
             # print("star: " + str(min_val, max_val)) 
