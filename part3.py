@@ -33,15 +33,15 @@ class Follower:
      
     template1 = cv2.imread("left-triangle.jpg")
     template2 = cv2.imread("right-triangle.jpg")
-    template3 = cv2.imread("triangle-up.jpg")
+    #template3 = cv2.imread("triangle-up.jpg")
     
     gray_temp1 = cv2.cvtColor(template1, cv2.COLOR_BGR2GRAY)
     gray_temp2 = cv2.cvtColor(template2, cv2.COLOR_BGR2GRAY)
-    gray_temp3 = cv2.cvtColor(template3, cv2.COLOR_BGR2GRAY)
+    #gray_temp3 = cv2.cvtColor(template3, cv2.COLOR_BGR2GRAY)
 
     template1_res = cv2.resize(gray_temp1, (0,0), fx=0.3, fy=0.3)
     template2_res = cv2.resize(gray_temp2, (0,0), fx=0.3, fy=0.3)
-    template3_res = cv2.resize(gray_temp3, (0,0), fx=0.5, fy=0.5)
+    #template3_res = cv2.resize(gray_temp3, (0,0), fx=0.5, fy=0.5)
     
     lower_yellow = numpy.array([19, 100, 100])
     upper_yellow = numpy.array([39, 255, 255])
@@ -87,11 +87,11 @@ class Follower:
             print("right arrow: " + str(min_val2))
             print("star: " + str(min_val3))
 
-            if min_val1 > min_val2 and min_val1 >= -0.16:
-                print("turning left")
-                self.twist.linear.x = 0.2
-                self.twist.angular.z = -0.06
-                self.cmd_vel_pub.publish(self.twist)
+            # if min_val1 > min_val2 and min_val1 >= -0.16:
+            #     print("turning left")
+            #     self.twist.linear.x = 0.2
+            #     self.twist.angular.z = -0.06
+            #     self.cmd_vel_pub.publish(self.twist)
             
             # elif min_val1 < min_val2 and min_val2 >= -0.17:
             #     print("turning right")
