@@ -7,7 +7,7 @@ from geometry_msgs.msg import Twist
 # Read the main image 
 
 bridge = cv_bridge.CvBridge()
-namedWindow("window", 1)
+cv2.namedWindow("window", 1)
 image_sub = rospy.Subscriber('camera/rgb/image_raw', Image, self.image_callback)
 cmd_vel_pub = rospy.Publisher('cmd_vel_mux/input/teleop', Twist, queue_size=1)
 twist = Twist()
