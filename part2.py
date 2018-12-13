@@ -123,16 +123,12 @@ class Follower:
         self.cmd_vel_pub.publish(self.twist)
         # END CONTROL
     else: 
+        steps = 3
         print("STOPPING")
-        self.twist.linear.x = 2
-        self.twist.angular.z = 0
-        self.cmd_vel_pub.publish(self.twist)
-        self.twist.linear.x = 2
-        self.twist.angular.z = 0
-        self.cmd_vel_pub.publish(self.twist)
-        self.twist.linear.x = 2
-        self.twist.angular.z = 0
-        self.cmd_vel_pub.publish(self.twist)
+        for s in steps:
+            self.twist.linear.x = 2
+            self.twist.angular.z = 0
+            self.cmd_vel_pub.publish(self.twist)
         self.twist.linear.x = 0
         self.twist.angular.z = 0
         self.cmd_vel_pub.publish(self.twist)
