@@ -126,7 +126,7 @@ class Follower:
         steps = 100
         print("STOPPING")
         for s in range(steps):
-            print("step: " + s)
+            print("step: " + str(s))
             self.twist.linear.x = 1
             self.twist.angular.z = -1
             self.cmd_vel_pub.publish(self.twist)
