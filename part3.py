@@ -44,7 +44,7 @@ class Follower:
 
     template1_res = cv2.resize(gray_temp1, (0,0), fx=0.3, fy=0.3)
     template2_res = cv2.resize(gray_temp2, (0,0), fx=0.3, fy=0.3)
-    template3_res = cv2.resize(gray_temp3, (0,0), fx=0.3, fy=0.3)
+    template3_res = cv2.resize(gray_temp3, (0,0), fx=0.2, fy=0.2)
     
     lower_yellow = numpy.array([19, 100, 100])
     upper_yellow = numpy.array([39, 255, 255])
@@ -87,10 +87,9 @@ class Follower:
             min_val2, max_val2, min_loc2, max_loc2 = cv2.minMaxLoc(image_result2)
             min_val3, max_val3, min_loc3, max_loc3 = cv2.minMaxLoc(image_result3)
 
-            print("left arrow: " + str(min_val1))
-            print("right arrow: " + str(min_val2))
-            print("star: " + str(min_val3))
-
+            print("left arrow: " + str(min_val1) + str(min_loc1)))
+            print("right arrow: " + str(min_val2) + str(min_loc2)))
+            print("star: " + str(min_val3) + str(min_loc3)))
 
             # image_result2 = cv2.matchTemplate(gray_image, gray_temp2, cv2.TM_CCOEFF_NORMED)
             # min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(image_result2)
