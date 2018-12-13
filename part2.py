@@ -124,7 +124,10 @@ class Follower:
         # END CONTROL
     else: 
         self.twist.linear.x = 1
-        self.twist.angular.x = 0
+        self.twist.angular.z = 0
+        self.cmd_vel_pub.publish(self.twist)
+        self.twist.linear.x = 0
+        self.twist.angular.z = 0
         self.cmd_vel_pub.publish(self.twist)
     cv2.imshow("window", image)
     cv2.waitKey(3)
